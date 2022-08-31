@@ -1,0 +1,4 @@
+# Third party packages required for testing go here.
+# We *do* need to include boto3 if used as we're not running inside a Lambda
+# We'll further assume that pip, setuptools, and wheel are installed and up-to-date
+pytest

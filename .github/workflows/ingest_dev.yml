@@ -1,0 +1,32 @@
+name: Ingest Development
+on:
+  push:
+    paths:
+      - 'ingest/**'
+
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    outputs:
+      sha_short: ${{ env.GITHUB_SHA_SHORT }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Generate outputs
+        run: |
+          echo "GITHUB_SHA_SHORT=$(git rev-parse --short HEAD)" | tee $GITHUB_ENV
+  
+  test:
+    runs-on: self-hosted
+    container:
+      image: python:3.9
+    steps:
+      - run: |
+          echo "Triggered by event type: ${{ github.event_name }}"
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Run tests
+        run: |
+          pip install -U -q pip setuptools wheel
+          pip install -r ingest/src/requirements.txt -r ingest/tests/requirements-dev.txt
+          pytest -v ingest/tests

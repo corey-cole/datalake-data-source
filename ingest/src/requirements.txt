@@ -1,0 +1,2 @@
+# We can skip boto3 (and associated deps) as those
+# are provided by the runtime
