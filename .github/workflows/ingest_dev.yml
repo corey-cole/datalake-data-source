@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - 'ingest/**'
+      - '.github/workflows/ingest_dev.yml'
 
 jobs:
   init:
