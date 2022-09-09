@@ -26,6 +26,5 @@ jobs:
           python-version: '3.9'
           cache: 'pip'
       - run: |
-          pip install -U -q pip setuptools wheel
-          pip install -r ingest/src/requirements.txt -r ingest/tests/requirements-dev.txt
-          pytest -v ingest/tests
+          pip install -U -q pip setuptools wheel tox
+          tox
