@@ -27,4 +27,4 @@ jobs:
           cache: 'pip'
       - run: |
           pip install -U -q pip setuptools wheel tox
-          tox
+          cd ingest && tox
